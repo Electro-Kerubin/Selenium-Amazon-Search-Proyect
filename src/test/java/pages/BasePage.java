@@ -50,6 +50,10 @@ public class BasePage {
         Find(locator).sendKeys(keysToSend);
     }
 
+    public String textFromElement(String locator) {
+        return Find(locator).getText();
+    }
+
     public void selectFromDropdownByValue(String locator, String value) {
         Select dropdown = new Select(Find(locator));
         dropdown.selectByValue(value);

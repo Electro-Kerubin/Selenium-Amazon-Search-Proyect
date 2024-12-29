@@ -15,22 +15,22 @@ public class AmazonSearchSteps {
     }
 
     @And("searches for (.+)$")
-    public void searchesForProduct() {
-
+    public void searchesForProduct(String product) {
+        amazonSearchPage.searchProduct(product);
     }
 
     @And("navigates to the second page")
     public void navigatesToSecondPage() {
-
+        amazonSearchPage.goToSecondPage();
     }
 
     @And("selects the third item")
     public void selectTheThirdItem() {
-
+        amazonSearchPage.addThirdItemToCart();
     }
 
     @Then("the user would be able to add it to the cart")
     public void itemCanBeAbleToTheCart() {
-        
+        String addedItemMessage = amazonSearchPage.addedToCartMessage();
     }
 }
