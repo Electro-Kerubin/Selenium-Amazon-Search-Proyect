@@ -1,5 +1,7 @@
 package steps;
 
+import org.junit.Assert;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -21,7 +23,7 @@ public class AmazonSearchSteps {
 
     @And("navigates to the second page")
     public void navigatesToSecondPage() {
-        amazonSearchPage.goToSecondPage();
+        amazonSearchPage.goToSecondPage("2");
     }
 
     @And("selects the third item")
@@ -31,6 +33,6 @@ public class AmazonSearchSteps {
 
     @Then("the user would be able to add it to the cart")
     public void itemCanBeAbleToTheCart() {
-        String addedItemMessage = amazonSearchPage.addedToCartMessage();
+        Assert.assertEquals("Agregado al carrito", amazonSearchPage.addedToCartMessage());
     }
 }
