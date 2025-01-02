@@ -9,28 +9,38 @@ Feature: Test Amazon search functionality
         And selects the third item
         Then the user would be able to add it to the cart
 
-    Examples:
-        | Product     |
-        | Alexa       |
-        | Playstation |
+        Examples:
+            | Product     |
+            | Alexa       |
+            | Playstation |
 
     @SearchExactProduct
-    Scenario: Search with exact product match
+    Scenario Outline: Search with exact product match
         Given the user navigates to www.amazon.com
-        When the user searches for "Amazon Echo Dot"
-        Then the search results should show items relevant to "Amazon Echo Dot"
+        And searches for <Product>
+        Then the search results should show items relevant to <Product>
+
+        Examples:
+            | Product                                                  |
+            | Echo Pop con bombilla WiZ Smart Color                    |
+            | IRIS USA - Corralito para mascotas con puerta, 8 paneles |
 
     @SearchWitchNoResults
     Scenario: Search with no results
         Given the user navigates to www.amazon.com
-        When the user searches for "NonExistentProduct12345"
+        And searches for "NonExistentProduct12345"
         Then the user should see a message indicating no results were found
 
     @SearchWithProductSuggestions
-    Scenario: Search with product suggestions
+    Scenario Outline: Search with product suggestions
         Given the user navigates to www.amazon.com
-        When the user starts typing "Alex"
-        Then the search bar should show suggestions including "Alexa"
+        When the user starts typing <TypingProduct>
+        Then the search bar should show suggestions including <Product>
+
+        Examples:
+            | TypingProduct | Product |
+            | ale           | alexa   |
+            | ffffffffff    | ffxiv   |
 
     @SearchWithEmptyQuery
     Scenario: Search with an empty query

@@ -1,3 +1,4 @@
+@InterfacesValidation
 Feature: Interface validation functionality
 
     Scenario: Validate product details page

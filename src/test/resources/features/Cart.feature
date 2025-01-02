@@ -1,3 +1,4 @@
+@CartFunctionality
 Feature: Amazon Cart Functionality
 
     Scenario: Remove an item from the cart

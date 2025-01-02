@@ -11,7 +11,7 @@ import pages.BasePage;
 @CucumberOptions(features = "src/test/resources/features",
                 glue = "steps", 
                 plugin = {"pretty", "html:target/cucumber-reports"},
-                tags = "@Amazon")
+                tags = "@SearchWithProductSuggestions")
 public class TestRunner {
 
     @AfterClass
