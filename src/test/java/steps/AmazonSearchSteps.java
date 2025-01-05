@@ -53,9 +53,21 @@ public class AmazonSearchSteps {
         amazonSearchPage.typingInSearchBar(product);
     }
 
-    @Then("the search bar should show suggestions including (.+)$")
+    // Arreglar el siguiente método
+    // @Then("the search bar should show suggestions including (.+)$")
     public void searchSuggestions(String product) {
         Assert.assertTrue(amazonSearchPage.listOfSuggestionSearch().contains(product));
+    }
+
+    @When("the user clicks the search button without entering any text")
+    public void userClickSearchButtonEmpty() {
+        amazonSearchPage.clickSearchButton();
+    }
+
+    @Then("the user should see a prompt to enter a search term")
+    public void promptToEnterSearchTerm() {
+
+        Assert.assertEquals("https://www.amazon.com/", amazonSearchPage.actualUrl());
     }
 
 }

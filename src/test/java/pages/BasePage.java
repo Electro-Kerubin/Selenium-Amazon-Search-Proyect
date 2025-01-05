@@ -17,7 +17,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BasePage {
     
     protected static WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
     static {
         WebDriverManager.chromedriver().setup();
@@ -85,6 +85,8 @@ public class BasePage {
         
         return values;
     }
+
+    
 
     public List<WebElement> bringMeAllElements(String locator) {
         return driver.findElements(By.xpath(locator));
