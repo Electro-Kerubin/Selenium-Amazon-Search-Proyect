@@ -11,7 +11,9 @@ import pages.BasePage;
 @CucumberOptions(features = "src/test/resources/features",
                 glue = "steps", 
                 plugin = {"pretty", "html:target/cucumber-reports"},
-                tags = "@SearchFunctionality or @CartFunctionality")
+                tags = "@Navigation or @SearchFunctionality")
+                // @CartFunctionality
+                // @SearchFunctionality or 
 public class TestRunner {
 
     @AfterClass

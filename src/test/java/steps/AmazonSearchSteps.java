@@ -6,16 +6,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.AmazonCartPage;
 import pages.AmazonSearchPage;
 
 public class AmazonSearchSteps {
     
     AmazonSearchPage amazonSearchPage = new AmazonSearchPage();
-
-    @Given("the user navigates to www.amazon.com")
-    public void navigateToAmazon() {
-        amazonSearchPage.navegateToAmazon();
-    }
+    AmazonCartPage amazonCartPage = new AmazonCartPage();
 
     @And("searches for (.+)$")
     public void searchesForProduct(String product) {
@@ -68,6 +65,15 @@ public class AmazonSearchSteps {
     public void promptToEnterSearchTerm() {
 
         Assert.assertEquals("https://www.amazon.com/", amazonSearchPage.actualUrl());
+    }
+
+
+    @Given("the user has added {string} to the cart")
+    public void userAddProductToCart(String product) {
+        amazonSearchPage.searchProduct(product);
+        amazonCartPage.addProduct(1);
+
+        Assert.assertEquals("Agregado al carrito", amazonSearchPage.addedToCartMessage());
     }
 
 }
