@@ -46,3 +46,9 @@ Feature: Test Amazon search functionality
         Given the user navigates to www.amazon.com
         When the user clicks the search button without entering any text
         Then the user should see a prompt to enter a search term
+
+    Scenario: Filter by prices and category
+        And searches for "Alexa"
+        And filters by prices between $50 and $100
+        And filters by category "Electronics"
+        Then the search results should show items within the specified price range and category
