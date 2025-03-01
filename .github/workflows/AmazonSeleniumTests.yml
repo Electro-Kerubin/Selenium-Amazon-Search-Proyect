@@ -45,4 +45,4 @@ jobs:
           chromedriver --version
 
       - name: Amazon Selenium Tests
-        run: ./gradlew clean test -Dwebdriver.chrome.driver=/usr/bin/chromedriver
+        run: ./gradlew clean test -Dcucumber.publish.enabled=true -Dwebdriver.chrome.driver=/usr/bin/chromedriver
