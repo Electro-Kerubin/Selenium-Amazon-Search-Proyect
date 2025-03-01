@@ -25,9 +25,9 @@ public class LoginPage extends BasePage {
     } 
 
     public void enterValidUsernameAndPasswordValues() {
-        write(emailInput, "rbcirano.social@gmail.com");
+        write(emailInput, "validemail@email.com");
         clickElement(continuarBtn);
-        write(passwordInput, "Contraseñatest123");
+        write(passwordInput, "validpassword123");
     }
 
     public void clickOnSubmitButton() {
