@@ -30,6 +30,7 @@ public class BasePage {
         options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         // driver.manage().window().maximize();
+        // asd
     }
 
     public BasePage(WebDriver driver) {
