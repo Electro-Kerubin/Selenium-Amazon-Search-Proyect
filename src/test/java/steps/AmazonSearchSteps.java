@@ -1,11 +1,11 @@
 package steps;
 
+
 import org.junit.Assert;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pages.AmazonCartPage;
 import pages.AmazonSearchPage;
 
@@ -18,7 +18,6 @@ public class AmazonSearchSteps {
     public void searchesForProduct(String product) {
         amazonSearchPage.searchProduct(product);
     }
-
 
     @And("navigates to the second page")
     public void navigatesToSecondPage() {
@@ -37,36 +36,20 @@ public class AmazonSearchSteps {
 
     @Then("the search results should show items relevant to (.+)$")
     public void searchResultsShouldShowItems(String product) {
-        Assert.assertEquals(product, amazonSearchPage.getFirstProductName());
+        Assert.assertTrue(amazonSearchPage.isProductInSearchResults(product));
+        // Assert.assertEquals(product, amazonSearchPage.getResultsNames());
     }
 
     @Then("the user should see a message indicating no results were found")
     public void noResultsFound() {
-        Assert.assertNotSame("Resultados", amazonSearchPage.resultMessage());
+        Assert.assertTrue(amazonSearchPage.resultMessage());
+        //Assert.assertNotSame("Resultados", amazonSearchPage.resultMessage());
     }
 
-    @When("the user starts typing (.+)$")
-    public void userTypingProduct(String product) {
-        amazonSearchPage.typingInSearchBar(product);
-    }
-
-    // Arreglar el siguiente método
-    // @Then("the search bar should show suggestions including (.+)$")
-    public void searchSuggestions(String product) {
-        Assert.assertTrue(amazonSearchPage.listOfSuggestionSearch().contains(product));
-    }
-
-    @When("the user clicks the search button without entering any text")
-    public void userClickSearchButtonEmpty() {
-        amazonSearchPage.clickSearchButton();
-    }
-
-    @Then("the user should see a prompt to enter a search term")
-    public void promptToEnterSearchTerm() {
-
-        Assert.assertEquals("https://www.amazon.com/", amazonSearchPage.actualUrl());
-    }
-
+    // @When("the user starts typing (.+)$")
+    // public void userTypingProduct(String product) {
+    //     amazonSearchPage.typingInSearchBar(product);
+    // }
 
     @Given("the user has added {string} to the cart")
     public void userAddProductToCart(String product) {

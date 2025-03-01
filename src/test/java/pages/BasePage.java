@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,7 +22,9 @@ public class BasePage {
 
     static {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
 
@@ -86,8 +89,6 @@ public class BasePage {
         return values;
     }
 
-    
-
     public List<WebElement> bringMeAllElements(String locator) {
         return driver.findElements(By.xpath(locator));
     }
@@ -96,4 +97,32 @@ public class BasePage {
         List<WebElement> results = driver.findElements(By.xpath(locator));
         results.get(index).click();
     }
+
+    public boolean imagenDisplayed(String locator) {
+        return Find(locator).isDisplayed();
+    } 
+
+    // Actions
+    public void hoverOverElement(String locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+        WebElement element = driver.findElement(By.xpath(locator));
+        org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+
+    public List<WebElement> getResultListAmazonPage(String type) {
+
+        List<WebElement> results = new ArrayList<>();
+
+        if(type.equals("suggestionResult")) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"sac-autocomplete-results-container\"]/div[1]/div[1]")));
+            results = driver.findElements(By.xpath("//div[contains(@class, 's-suggestion')]"));
+        } else if(type.equals("searchResult")) {
+            results = driver.findElements(By.cssSelector("div.s-main-slot div.s-result-item"));
+        }
+
+        System.out.println("resultado: " + results);
+        return results;
+    }
+
 }

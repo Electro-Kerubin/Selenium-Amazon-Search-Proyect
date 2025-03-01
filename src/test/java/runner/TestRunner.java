@@ -9,9 +9,10 @@ import pages.BasePage;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",
-                glue = "steps", 
+                glue = {"steps"}, 
                 plugin = {"pretty", "html:target/cucumber-reports"},
-                tags = "@Navigation or @SearchFunctionality")
+                tags = "@Login or @Navigation or @SearchFunctionality")
+                // @Navigation or @SearchFunctionality or 
                 // @CartFunctionality
                 // @SearchFunctionality or 
 public class TestRunner {
